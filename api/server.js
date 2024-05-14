@@ -5,17 +5,11 @@ import Fingerprint from "express-fingerprint";
 import AuthRootRouter from "./routers/Auth.js";
 import TokenService from "./services/Token.js";
 import cookieParser from "cookie-parser";
-
-/* 
-* Перед запуском
-* в файле db.js необходимо заполнить 
-* поля для подключения к postgres
-*/ 
+import reportRouter from './routers/ReportRouter.js'; 
 
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
-
 const app = express();
 
 app.use(cookieParser());
@@ -33,6 +27,8 @@ app.use("/auth", AuthRootRouter);
 app.get("/resource/protected", TokenService.checkAccess, (_, res) => {
   res.status(200).json("Добро пожаловать!" + Date.now());
 });
+
+app.use('/api/report', reportRouter);
 
 app.listen(PORT, () => {
   console.log("Сервер успешно запущен");

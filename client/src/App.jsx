@@ -4,8 +4,10 @@ import { SnackbarProvider } from "notistack";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Demo from "./pages/Demo";
+import UploadFilePage from "./pages/UploadFilePage";
 import style from "./app.module.scss";
 import { AuthContext } from "./context/AuthContext";
+// import PulseCalculator from "./pages/PulseCalculator";
 
 const App = () => {
   const { isUserLogged } = useContext(AuthContext);
@@ -22,7 +24,11 @@ const App = () => {
         )}
         <Routes>
           {isUserLogged ? (
-            <Route path="demo" element={<Demo />} />
+            <>
+              <Route path="demo" element={<Demo />} />
+              <Route path="upload" element={<UploadFilePage />} />
+              {/* <Route path="/pulse-calculator" element={<PulseCalculator filePath="/home/sirius/Загрузки/Telegram Desktop/КАРЕН_Алексеев_Сергей_2024_01_29_14_30_14_бег_5сек (3).xlsx" />} /> */}
+            </>
           ) : (
             <>
               <Route path="sign-in" element={<SignIn />} />

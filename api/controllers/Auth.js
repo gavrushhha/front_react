@@ -37,7 +37,10 @@ class AuthController {
 
       res.cookie("refreshToken", refreshToken, COOKIE_SETTINGS.REFRESH_TOKEN);
 
-      return res.status(200).json({ accessToken, accessTokenExpiration });
+      res.redirect("/upload-file");
+
+      // return res.status(200).json({ accessToken, accessTokenExpiration });
+      return res.status(200).end();
     } catch (err) {
       return ErrorsUtils.catchError(res, err);
     }
